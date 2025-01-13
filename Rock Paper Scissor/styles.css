@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+  font-family: 'Press Start 2P', Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+}
+
+.choices {
+  margin: 40px 0;
+}
+
+.choices button {
+  font-size: 5rem;
+  width: 120px;
+  height: 120px;
+  margin: 0 15px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ff416c, #ff4b2b);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 0, 0, 0.8);
+  transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+}
+
+.choices button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(145deg, #ff4b2b, #ff416c);
+  box-shadow: 0 15px 30px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 255, 0, 0.8);
+}
+
+#playerDisplay,
+#computerDisplay,
+#resultDisplay {
+  font-size: 2rem;
+  margin: 10px 0;
+}
+
+#resultDisplay {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 20px;
+  padding: 15px 30px;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 10px rgba(0, 255, 0, 0.8);
+}
+
+.scoreDisplay {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
