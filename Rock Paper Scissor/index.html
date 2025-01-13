@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock - Paper - Scissors</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -23,9 +23,13 @@
     </div>
 
     <div class="choices">
-        <button onclick="playGame('rock')">👊</button>
-        <button onclick="playGame('paper')">✋</button>
-        <button onclick="playGame('scissors')">✌</button>
+        <button onclick="playGame('rock')" title="Rock - 🪨">👊</button>
+        <button onclick="playGame('paper')" title="Paper - 📄">✋</button>
+        <button onclick="playGame('scissors')" title="Scissors - ✂">✌</button>
+    </div>
+
+    <div class="reset-container">
+        <button onclick="resetGame()" id="resetButton">Play Again</button>
     </div>
 
     <script src="app.js"></script>

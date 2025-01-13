@@ -72,3 +72,76 @@ h1 {
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
+
+.greenText {
+  color: #39ff14;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.8);
+}
+
+.redText {
+  color: #ff4b2b;
+  text-shadow: 0 0 10px rgba(255, 75, 43, 0.8);
+}
+
+#playerScoreDisplay,
+#computerScoreDisplay {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  transform: scale(0.9);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.reset-container {
+  margin-top: 30px;
+}
+
+#resetButton {
+    font-family: 'Press Start 2P', Arial, sans-serif;  /* Adding the gaming font */
+    font-size: 1.5rem;
+    padding: 15px 30px;
+    background-color: #2a5298;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #resetButton:hover {
+    background-color: #1e3c72;
+  }
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .choices button {
+    font-size: 4rem;
+    width: 100px;
+    height: 100px;
+  }
+
+  #playerDisplay,
+  #computerDisplay,
+  #resultDisplay {
+    font-size: 1.5rem;
+  }
+
+  .scoreDisplay {
+    font-size: 1.2rem;
+  }
+
+  #resetButton {
+    font-size: 1.2rem;
+  }
+}
