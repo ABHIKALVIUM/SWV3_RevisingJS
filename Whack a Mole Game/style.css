@@ -1,0 +1,127 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #121212;
+    font-family: 'Press Start 2P', cursive;
+    color: #f0f0f0;
+    margin: 0;
+    height: 100vh;
+}
+
+.game {
+    text-align: center;
+    background-color: #1e1e1e;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(0, 255, 128, 0.5); 
+    max-width: 450px;
+    width: 100%;
+}
+
+.header {
+    margin-bottom: 20px;
+    color: #00ff80; 
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+.info-item {
+    color: #ff4081;
+}
+
+.mode-selection {
+    margin-bottom: 20px;
+}
+
+.mode-selection label {
+    font-size: 14px;
+}
+
+.mode-selection select {
+    font-size: 14px;
+    padding: 5px;
+    margin-left: 10px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #00ff80;
+    border-radius: 5px;
+}
+
+.mole-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 330px;
+    margin: 20px auto;
+}
+
+.hole {
+    width: 100px;
+    height: 100px;
+    background-color: #3c3c3c;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.mole {
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -100px; 
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: bottom 0.3s, opacity 0.3s;
+    opacity: 0;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.mole.up {
+    bottom: 10px;
+    opacity: 1; 
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #00ff80; 
+    color: #121212; 
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 255, 128, 0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 0 20px rgba(0, 255, 128, 1);
+}
+
+button:focus {
+    outline: none;
+}
+
+button:active {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(0, 255, 128, 0.7);
+}
+
+#result {
+    font-size: 18px;
+    color: #ff4081; 
+    margin-top: 10px;
+}

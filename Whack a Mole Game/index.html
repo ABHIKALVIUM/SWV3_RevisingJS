@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mole Game</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="game">
+        <div class="header">
+            <h1>Whack-a-Mole Game</h1>
+        </div>
+        <div class="info-container">
+            <div class="info-item">Score: <span id="score">0</span></div>
+            <div class="info-item">High Score: <span id="highScore">0</span></div>
+        </div>
+        <div class="info-container">
+            <div class="info-item">Time Left: <span id="timeLeft">30</span>s</div>
+            <div class="info-item">Mode: <span id="mode">Easy</span></div>
+        </div>
+        <div class="mode-selection">
+            <label for="modeSelect">Select Mode:</label>
+            <select id="modeSelect">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div class="mole-container">
+            <div class="hole" id="hole1"><div class="mole" id="mole1"></div></div>
+            <div class="hole" id="hole2"><div class="mole" id="mole2"></div></div>
+            <div class="hole" id="hole3"><div class="mole" id="mole3"></div></div>
+            <div class="hole" id="hole4"><div class="mole" id="mole4"></div></div>
+            <div class="hole" id="hole5"><div class="mole" id="mole5"></div></div>
+            <div class="hole" id="hole6"><div class="mole" id="mole6"></div></div>
+            <div class="hole" id="hole7"><div class="mole" id="mole7"></div></div>
+            <div class="hole" id="hole8"><div class="mole" id="mole8"></div></div>
+            <div class="hole" id="hole9"><div class="mole" id="mole9"></div></div>
+        </div>
+        <button id="startButton">Start Game</button>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
