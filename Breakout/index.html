@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Breakout Game</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id='start-screen' class='screen' style='display:block'>
+        <form onsubmit='startGame(event)'>
+            <input  type='text' placeholder='Enter Name..' id="player-name" required>
+            <input  type='text' placeholder='Enter Nickname..' id="player-nick-name" required>
+            <button id="button" type='submit' onclick="goToGame()">START</button>
+        </form>
+        <button class="rulesbtn" onclick="goToRules()">RULES</button>
+    </div>
+    <div id="created-by-text">
+        CREATED BY ABHISHEK VERSION: 1.0
+    </div>
+    <canvas id="canvas" style='display:none'></canvas>
+    <div id='gameover-screen' class='screen' style='display:none'>
+        <h1>Game over</h1>
+    </div>
+<script src="./index.js"></script>
+</body>
+</html>

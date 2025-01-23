@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    background-image: url("fall-guys-8k-game-breakout-game-arena-upscaled.png");
+    background-size: cover; /* Set the background image to cover the entire body */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+}
+a {
+    font-family: 'Anton', sans-serif;
+}
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(255, 0, 212, 0.7);
+    border-radius: 100px;
+    text-align: center;
+    border: 2px solid white;
+}
+p{
+    font-size: 27px;
+    font-family: 'Anton', sans-serif;
+}
+h1{
+    text-align: center;
+    color: white;
+    font-family: 'Anton', sans-serif;
+}
+.rules {
+    color: white;
+    line-height: 1.6;
+}
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 0, 234);
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+.back-button:hover {
+    background-color: yellow;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+@media screen and (max-width: 768px) {
+    .box {
+        width: 300px;
+        padding: 15px;
+        border-radius: 30px;
+        height: 580px;
+        top: 450px;
+    }
+    body {
+        background-image: url("bg2.png");
+        height: 100vh; /* Set the height of the body to fill the viewport height */
+        width: 100%; /* Set the width of the body to fill the entire width */
+        background-repeat: no-repeat;
+        background-size: cover; /* Adjust the background image size to cover the entire body */
+        background-position: center; /* Center the background image */
+        margin: 0; /* Remove default body margin */
+        padding: 0; /* Remove default body padding */
+        position: relative;
+    }
+    p {
+        font-size: 25px;
+    }
+    h1 {
+        font-size: 28px;
+    }
+    .rules {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+body {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    /* background-color: #000; Set your desired background color */
+    color: #fff;
+    height: 100vh;
+    /* border: 2px solid red; */
+    background-image: url('fall-guys-8k-game-breakout-game-name-arena-upscaled.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+#bg-img{
+    width: 100%;
+    height: 100%;
+    /* border: 10px solid green; */
+}
+#enterName::placeholder {
+    color: #cdbebe;
+  }
+img {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*new*/
+    z-index: -1;
+}
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; */
+    margin-top: 1vh; 
+}
+input[type='text'] {
+    background-color: rgb(238, 0, 255);
+    margin-bottom: 10px;
+    width: 140px;
+    height: 35px;
+    padding: 12px 24px; 
+    border-radius: 4px;
+    color: #ffffff;
+    border: white;
+    outline: none;
+    font-size: 1.5em;
+}
+input[type='text']::placeholder {
+    color: #ffffff;
+}
+input[type='text'], button {
+    display: inline-block;
+    font-size: 1.2em;
+    cursor: pointer;
+    text-decoration: none;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    margin-top: 10px; 
+    font-family: 'Anton', sans-serif;
+}
+button {
+    border: none;
+    outline: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 15px 40px; 
+    border-radius: 100px;
+    color: #ffffff;
+    background-color: rgb(238, 0, 255);
+    border: 2px solid #ffffff;
+    transition-duration: 0.4s;
+    margin-top: 15px; 
+    font-family: 'Anton', sans-serif;
+}
+button:hover {
+    font-size: 1.6em;
+    background-color: yellow;
+}
+.screen {
+    color:#ffffff;
+    padding: 20px;     
+    position: fixed;     
+    top:50%;     
+    left:50%;     
+    margin-top: -100px;     
+    margin-left: -100px;     
+    height:200px;     
+    width:250px;     
+    text-align: center;
+}
+#sound{
+	width: 300px;
+	height: 300px;
+	cursor: pointer;
+	position: absolute;
+	top: 465px;
+	left: 15px;
+}
+#created-by-text {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    color: white;
+    font-size: 20px;
+    font-family: 'Anton', sans-serif;
+}
+@media screen and (max-width: 500px) {
+    input[type='text'] {
+        width: 50%;
+        max-width: 300px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+    body {
+        background-image: url("./bg1.png");
+        height: 99vh; /* Set the height of the body to fill the viewport height */
+        width: 100%; /* Set the width of the body to fill the entire width */
+        background-repeat: no-repeat;
+        background-size: cover; /* Adjust the background image size to cover the entire body */
+        background-position: center; /* Center the background image */
+        margin: 0; /* Remove default body margin */
+        padding: 0; /* Remove default body padding */
+        position: relative;
+    }
+    button {
+        font-size: 1.8em;
+        padding: 12px 30px;
+    }
+    img {
+        width: 100%;
+        height: auto;
+        top: 50%;
+    }
+    #created-by-text {
+        bottom: 20px;
+        font-size: 23px;
+    }
+}

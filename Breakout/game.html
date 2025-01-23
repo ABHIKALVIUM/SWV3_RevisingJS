@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+      *{
+  box-sizing: border-box;
+}
+body{
+  background-image: url("fall-guys-8k-game-breakout-upscaled.png");
+  background-size: 100vw 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  max-width: 100%;
+  height: auto;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+#bgsound{
+width: 50px;
+height: 50px;
+top:50px;
+left:2250px;
+}
+canvas{
+  background-color: rgb(255, 0, 238);
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 75%;
+  border-radius: 5px;
+  margin-top: 100px;
+}
+.btn{
+  cursor: pointer;
+  border: 0;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  border-radius: 5px;
+}
+.btn:focus{
+  outline: 0;
+}
+.btn:active{
+  transform: scale(0.98);
+}
+.btn:hover{
+  background-color: #222;
+}
+.rules-btn{
+  position: absolute;
+  top:30px;
+  left:30px;
+}
+.score-card {
+  margin-left: 100vw;
+  margin-top: 50vh;
+        width: 310px;
+        height: 240px;
+        background-color: black;
+        color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        transition: all 0.5s ease-in-out;
+        z-index: 1; 
+      }
+.popup.hide{
+ transform: translateY(-700px);
+}
+.popup h1{
+    text-align: center;
+}
+.score-card{
+    position: absolute;
+    top:-700px;
+    
+}
+.score-card.show{
+    top:50%;
+    transform: translatey(-100%);
+}
+.start-game{
+   padding: 10px 20px;
+   position: absolute;
+   left:50%;
+   transform: translateX(-50%);
+   font-size: 20px;
+}
+.start-game:focus{
+    outline: 0;
+    
+}
+.start-game:active{
+    transform: scale(0.98) translateX(-50%);
+}
+.play-again{
+    top: 150px;
+}
+.back-button {
+  position: absolute;
+   margin-top: 20px;
+  margin-left: 140px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 0, 234);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+.back-button:hover {
+  background-color: yellow; 
+}
+a{
+font-family: 'Anton', sans-serif;
+}
+ @media only screen and (max-width: 432px) and (max-height: 932px) {
+  body{
+    height:932px;
+    width: 430px;
+  }
+  .back-button {
+    position: absolute;
+    top: 460px; 
+    right: 350px; 
+  }
+  #bgsound{
+width: 50px;
+height: 50px;
+top:500px;
+left:390px;
+}
+canvas{
+  left:10px;
+  width:400px;
+  height: 600px;
+  top:500px;
+}
+.score-card{
+  right:60px;
+}
+}
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-button">Back</a>
+    <div class="score-card" id="score-card">
+        <button id="play-again" class="play-again start-game ">PLAY AGAIN</button>
+    </div>
+    <audio id="sound">
+        <source src="sound.wav" type="audio/wav">
+        <source src="bgm.mp3" type="audio/wav">
+      </audio>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <div class="sound1">
+      <img src="SOUND_ON.png" alt="" id="bgsound">
+    </div>
+    <script>
+    const closeRules = document.getElementById("close-btn");
+    const rules = document.getElementById("rules");
+    const showRules = document.getElementById("rules-btn");
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const popup = document.getElementById("popup");
+    const playAgain = document.getElementById("play-again");
+    const ScoreCard = document.getElementById("score-card");
+    const sound = document.getElementById('sound');
+    const resultElement = document.getElementById("result");
+    let score = 0;
+    let finalScore ;
+    let bgSound = new Audio("./bgm.mp3");
+    bgSound.play();
+    bgSound.loop = true;
+
+  function startGame() {
+    let startGame = true;
+    const colors = ['white']
+    const brickRowCount = 9;
+    const brickColCount = 5;
+    const brickInfo = {
+    width: 70,
+    height: 20,
+    padding: 10,
+    offsetX: 45,
+    offsetY: 60,
+    visible: true,
+    color: 'white'
+};
+const paddle = {
+  x: canvas.width / 2 - 40,
+  y: canvas.height - 20,
+  w: 80,
+  h: 10,
+  speed: 8,
+  dx: 0,
+};
+const brick = [];
+const ball = {
+  x: canvas.width / 2,
+  y: canvas.width / 2,
+  size: 10,
+  speed: 4,
+  dx: 4,
+  dy: -4,
+};
+function createBricks() {
+  for (let i = 0; i < brickRowCount; i++) {
+    brick[i] = [];
+    for (let j = 0; j < brickColCount; j++) {
+      const x = i * (brickInfo.width + brickInfo.padding) + brickInfo.offsetX;
+      const y = j * (brickInfo.height + brickInfo.padding) + brickInfo.offsetY;
+      brick[i][j] = { x, y, ...brickInfo };
+    }
+  }
+}
+createBricks();
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2);
+  ctx.fillStyle = "white";
+  ctx.fill();
+  ctx.closePath();
+}
+function drawPaddle() {
+  ctx.beginPath();
+  ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h);
+  ctx.fillStyle = "white";
+  ctx.fill();
+  ctx.closePath();
+}
+function drawScore() {
+  ctx.font = "20px 'Anton', sans-serif";
+  ctx.fillText(`SCORE:${score}`, canvas.width - 100, 30);
+  ctx.fontFamily = "Anton, sans-serif";
+}
+function drawBrick() {
+  brick.forEach((column) => {
+    column.forEach((brick) => {
+      ctx.beginPath();
+      ctx.rect(brick.x, brick.y, brick.width, brick.height);
+      ctx.fillStyle = brick.visible ? brick.color : "transparent";
+      ctx.fill();
+      ctx.closePath();
+    });
+  });
+}
+function drawEverything() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawBall();
+  drawPaddle();
+  drawScore();
+  drawBrick();
+}
+function movepaddle() {
+  paddle.x += paddle.dx;
+  if (paddle.x + paddle.w > canvas.width) {
+    paddle.x = canvas.width - paddle.w;
+  }
+  if (paddle.x < 0) {
+    paddle.x = 0;
+  }
+}
+const soundElement  = document.getElementById("bgsound");
+soundElement.addEventListener("click", audioManager);
+function audioManager(){
+    let imgSrc = soundElement.getAttribute("src");
+    let SOUND_IMG = imgSrc == "SOUND_ON.png" ? "SOUND_OFF.png" : "SOUND_ON.png";
+    soundElement.setAttribute("src", SOUND_IMG);
+    bgm.muted = bgm.muted ? false : true;
+}
+function moveball() {
+  ball.x += ball.dx;
+  ball.y += ball.dy;
+  if (ball.x + ball.size > canvas.width || ball.x - ball.size < 0) {
+    ball.dx *= -1;
+  }
+  if (ball.y + ball.size > canvas.height || ball.y - ball.size < 0) {
+    ball.dy *= -1;
+  }
+  if (
+    ball.x - ball.size > paddle.x &&
+    ball.x + ball.size < paddle.x + paddle.w &&
+    ball.y + ball.size > paddle.y
+  ) {
+    ball.speed = ball.speed + 0.5;
+    ball.dy = -ball.speed;
+  }
+  brick.forEach((column) => {
+    column.forEach((brick) => {
+      if (brick.visible) {
+        if (
+          ball.x - ball.size > brick.x &&
+          ball.x + ball.size < brick.x + brick.width &&
+          ball.y + ball.size > brick.y &&
+          ball.y - ball.size < brick.y + brick.height
+        ) {
+          ball.dy *= -1;
+          brick.visible = false;
+          increaseScore();
+          finalScore = score;
+        }
+      }
+    });
+  });
+  if (ball.y + ball.size > canvas.height) {
+    score = 0;
+    ball.speed = 4;
+    ball.dy = -0;
+    ball.dx = 0;
+    startGame = false;
+     showScoreCard()
+  }
+}
+function showScoreCard() {
+  let x = document.createElement("h1");
+  x.innerText = `FINAL SCORE: ${finalScore}
+  YOU LOSE`;
+  x.style.textAlign ='center';
+  x.style.fontFamily = 'Anton, sans-serif';
+  x.style.color= 'yellow';
+  ScoreCard.append(x);
+  ScoreCard.classList.add("show");
+  let isWin=false; 
+  showAllBrick();         
+}
+function increaseScore() {
+  score++;
+  sound.play();
+  if (score % (brickColCount * brickRowCount) === 0) {
+    showAllBrick();
+    showScoreCard();
+    score = 0;
+  }
+}
+function showAllBrick() {
+  brick.forEach((column) => {
+    column.forEach((brick) => {
+      brick.visible = true;
+    });
+  });   
+}
+function update() {
+  drawScore();
+  moveball();
+  movepaddle();
+  drawEverything();
+}
+function checkStatus() {
+  if (startGame === true) {
+    update();
+  }
+  requestAnimationFrame(checkStatus);
+}
+checkStatus();
+function keyDown(e) {
+  console.log(e);
+    if (e.keyCode === 39) {
+        paddle.dx = paddle.speed;
+    } else if (e.keyCode === 37) {
+        paddle.dx = -paddle.speed;
+    }
+}
+function keyUp(e) {
+    if (e.keyCode === 39 || e.keyCode === 37) {
+        paddle.dx = 0;
+    }
+}
+playAgain.addEventListener("click", () => {
+  window.location.reload();
+});
+document.addEventListener("keydown", keyDown);
+document.addEventListener("keyup", keyUp);
+function randomColor(){
+}}
+let currentAudio = null;
+function playAudio(audioSrc) {
+    if (currentAudio !== null) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+    currentAudio = new Audio(audioSrc);
+    currentAudio.play();
+    currentAudio.loop = true;
+}
+startGame();
+</script>
+</body>
+</html>
